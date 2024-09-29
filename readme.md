@@ -33,7 +33,8 @@ Arguments:
 -id: The ID of the user to be deleted.
 Usage:
 ```bash
-$ flask user delete <id>
+$   flask user delete
+$   Enter the user id: <id>
 ```
 
 ### update
@@ -75,7 +76,8 @@ Arguments:
 -company_id: The ID of the company.
 Usage:
 ```bash
-$   flask user view-jobs <company_id>
+$   flask user view-jobs
+$   Enter company id: <company_id>
 ```
 
 ### view-applications
@@ -85,6 +87,7 @@ Arguments:
 Usage:
 ```bash
 $   flask user view-applications <applicant_id>
+$   Enter applicant id: <applicant_id>
 ```
 
 ## Job and Application Commands
@@ -138,7 +141,8 @@ Arguments:
 -listing_id: The ID of the job listing.
 Usage:
 ```bash
-$   flask job view-applications <listing_id>
+$   flask job view-applications
+$   Enter listing id: <listing_id>
 ```
 
 ### submit-application
@@ -148,7 +152,9 @@ Arguments:
 -applicant_id: The ID of the applicant submitting the application.
 Usage:
 ```bash
-flask job submit-application <listing_id> <applicant_id>
+$   flask job submit-application
+$   Enter the listing id: <listing_id>
+$   Enter the applicant id: <applicant_id>
 ```
 
 ### delete-application
@@ -158,17 +164,18 @@ Arguments:
 -applicant_id: The ID of the applicant who submitted the application.
 Usage:
 ```bash
-$   flask job delete-application <application_id> <applicant_id>
+$   flask job delete-application
+$   Enter the applicant id: <applicant_id>
+$   Enter the application id: <application_id>
 ```
 
 ### update-application-status
 Description: Updates the status of a specific application for a job.
-Prompt: 
--Enter company ID.
--Enter job's listing ID
--Enter application ID
--Enter new status.
 Usage:
 ```bash
 $   flask job update-application-status
+$   Enter company id: <company_id>
+$   Enter listing id: <listing_id>
+$   Enter applicatio id: <application_id>
+$   Enter application status (pending/accepted/rejected): [pending]
 ```

@@ -1,5 +1,5 @@
 from .user import create_user, update_user, delete_user, get_all_users_table
-from .applicant import submit_application, view_all_applicants, get_applications_for_applicant
+from .applicant import submit_application, view_all_applicants, get_applications_for_applicant, get_available_applicants
 from .company import view_all_companies
 from .job import create_job, delete_job, update_job
 from .listing import get_all_listings, get_company_listings

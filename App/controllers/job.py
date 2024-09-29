@@ -1,21 +1,27 @@
 from App.models import Job, Company, Listing
 from App.database import db
 from datetime import date
+from sqlalchemy.exc import SQLAlchemyError
 
 # Create a new job
 def create_job(company_id, title, salary, description, listing_date=date.today()):
     company = Company.query.get(company_id)
     if not company:
         return None
-
-    new_job = Job(title=title, salary=salary, description=description, company_id=company_id)
-    db.session.add(new_job)
-    db.session.commit()
-
-    new_listing = Listing(job_id=new_job.id, company_id=company_id, listing_date=listing_date)
-    db.session.add(new_listing)
-    db.session.commit()
-    return new_job
+    
+    try:
+        new_job = Job(title=title, salary=salary, description=description, company_id=company_id)
+        db.session.add(new_job)
+        db.session.commit()
+        
+        new_listing = Listing(job_id=new_job.id, company_id=company_id, listing_date=listing_date)
+        db.session.add(new_listing)
+        db.session.commit()
+        return new_job
+    except SQLAlchemyError as e:
+        db.session.rollback()
+        print(f'Error occured during job creation: {e}')
+        return None
 
 # Delete a job
 def delete_job(job_id):
