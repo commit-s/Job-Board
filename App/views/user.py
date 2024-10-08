@@ -6,7 +6,6 @@ from.index import index_views
 from App.controllers import (
     create_user,
     get_all_users,
-    get_all_users_table,
     jwt_required
 )
 
@@ -26,7 +25,7 @@ def create_user_action():
 
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
-    users = get_all_users_table()
+    users = get_all_users()
     return jsonify(users)
 
 @user_views.route('/api/users', methods=['POST'])

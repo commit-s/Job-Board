@@ -3,16 +3,16 @@ import random
 
 # Create notable companies
 companies = [
-    ("google", "securePassword1", "Google", "company", "Google LLC"),
-    ("meta", "securePassword2", "Meta", "company", "Meta Platforms, Inc."),
-    ("apple", "securePassword3", "Apple", "company", "Apple Inc."),
-    ("amazon", "securePassword4", "Amazon", "company", "Amazon.com, Inc."),
-    ("microsoft", "securePassword5", "Microsoft", "company", "Microsoft Corporation"),
-    ("tesla", "securePassword6", "Tesla", "company", "Tesla, Inc."),
-    ("netflix", "securePassword7", "Netflix", "company", "Netflix, Inc."),
-    ("twitter", "securePassword8", "Twitter", "company", "Twitter, Inc."),
-    ("linkedin", "securePassword9", "LinkedIn", "company", "LinkedIn Corporation"),
-    ("salesforce", "securePassword10", "Salesforce", "company", "Salesforce.com, Inc.")
+    ("google", "securePassword1", "Google", "employer", "Google LLC"),
+    ("meta", "securePassword2", "Meta", "employer", "Meta Platforms, Inc."),
+    ("apple", "securePassword3", "Apple", "employer", "Apple Inc."),
+    ("amazon", "securePassword4", "Amazon", "employer", "Amazon.com, Inc."),
+    ("microsoft", "securePassword5", "Microsoft", "employer", "Microsoft Corporation"),
+    ("tesla", "securePassword6", "Tesla", "employer", "Tesla, Inc."),
+    ("netflix", "securePassword7", "Netflix", "employer", "Netflix, Inc."),
+    ("twitter", "securePassword8", "Twitter", "employer", "Twitter, Inc."),
+    ("linkedin", "securePassword9", "LinkedIn", "employer", "LinkedIn Corporation"),
+    ("salesforce", "securePassword10", "Salesforce", "employer", "Salesforce.com, Inc.")
 ]
 
 # Sample applicants

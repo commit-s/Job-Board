@@ -5,21 +5,19 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
-    name = db.Column(db.String(50), nullable=False)
-    type = db.Column(db.String(50))
+    type = db.Column(db.String(50), default='applicant', nullable=False)
 
     __mapper_args__ = {
         'polymorphic_on': type,  # Polymorphic behavior based on 'type'
         'polymorphic_identity': 'user'
     }
 
-    def __init__(self, username, password, name):
+    def __init__(self, username, password):
         self.username = username
-        self.name = name
         self.set_password(password)
 
     def __repr__(self):
-        return f"<User(id={self.id}, username={self.username}, name={self.name}, type={self.type})>"
+        return f"<User(id={self.id}, username={self.username}, type={self.type})>"
 
     def set_password(self, password):
         """Create hashed password."""

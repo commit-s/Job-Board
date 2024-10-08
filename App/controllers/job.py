@@ -1,27 +1,49 @@
-from App.models import Job, Company, Listing
+from App.models import Job, Employer
 from App.database import db
-from datetime import date
 from sqlalchemy.exc import SQLAlchemyError
 
+# Get a specific job
+def get_job(job_id):
+    return Job.query.get(job_id)
+
+# Get all jobs
+def get_all_jobs():
+    return Job.query.all()
+
+# Get all jobs from company
+def get_employer_jobs(employer_id):
+    return Job.query.filter_by(employer_id=employer_id).all()
+
 # Create a new job
-def create_job(company_id, title, salary, description, listing_date=date.today()):
-    company = Company.query.get(company_id)
-    if not company:
+def create_job(employer_id, title, salary, description):
+    if not Employer.query.get(employer_id):
         return None
     
     try:
-        new_job = Job(title=title, salary=salary, description=description, company_id=company_id)
+        new_job = Job(employer_id, title, salary, description)
         db.session.add(new_job)
-        db.session.commit()
-        
-        new_listing = Listing(job_id=new_job.id, company_id=company_id, listing_date=listing_date)
-        db.session.add(new_listing)
         db.session.commit()
         return new_job
     except SQLAlchemyError as e:
         db.session.rollback()
         print(f'Error occured during job creation: {e}')
         return None
+
+# Update a job's details
+def update_job(job_id, title=None, salary=None, description=None):
+    job = Job.query.get(job_id)
+    if not job:
+        return None
+
+    if title is not None:
+        job.title = title
+    if salary is not None:
+        job.salary = salary
+    if description is not None:
+        job.description = description
+
+    db.session.commit()
+    return job
 
 # Delete a job
 def delete_job(job_id):
@@ -33,18 +55,3 @@ def delete_job(job_id):
     db.session.commit()
     return job
 
-# Update a job's details
-def update_job(job_id, title=None, salary=None, description=None):
-    job = Job.query.get(job_id)
-    if not job:
-        return None
-
-    if title:
-        job.title = title
-    if salary:
-        job.salary = salary
-    if description:
-        job.description = description
-
-    db.session.commit()
-    return job
