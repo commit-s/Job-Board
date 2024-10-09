@@ -1,10 +1,11 @@
 # blue prints are imported 
 # explicitly instead of using *
-from .user import user_views
-from .index import index_views
 from .auth import auth_views
-from .admin import setup_admin
+from .index import index_views
+from .listing import listing_views
+from .application import application_views
+from .job import job_views
 
 
-views = [user_views, index_views, auth_views] 
+views = [auth_views, index_views, listing_views, application_views, job_views] 
 # blueprints must be added to this list

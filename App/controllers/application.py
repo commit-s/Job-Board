@@ -14,7 +14,7 @@ def get_application(application_id):
 def get_applications_for_job(listing_id):
     return Application.query.filter_by(listing_id=listing_id)
 
-def update_application_status(application_id,status=None):
+def set_application_status(application_id, status=None):
     application = get_application(application_id)
     if not application or status is None:
         return None
@@ -29,22 +29,22 @@ def submit_application(applicant_id, listing_id, submission_date=None, status='p
     listing = get_listing(listing_id)
 
     if not applicant or not listing:
-        return None
+        return None, 1
 
     existing_application = Application.query.filter_by(applicant_id=applicant_id, listing_id=listing_id).first()
     if existing_application:
         print("Application already exists")
-        return existing_application
+        return existing_application, 1
     
     try:
         new_application = Application(applicant_id, listing_id, submission_date, status)
         db.session.add(new_application)
         db.session.commit()
-        return new_application
+        return new_application, 0
     except SQLAlchemyError as e:
         db.session.rollback()
         print(f'Error occured: {e}')
-        return None
+        return None, 1
     
 # Delete an application
 def delete_application(applicant_id, application_id):

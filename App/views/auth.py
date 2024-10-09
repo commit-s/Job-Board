@@ -1,72 +1,35 @@
-from flask import Blueprint, render_template, jsonify, request, flash, send_from_directory, flash, redirect, url_for
-from flask_jwt_extended import jwt_required, current_user, unset_jwt_cookies, set_access_cookies
-
-
-from.index import index_views
+from flask import Blueprint, jsonify, request
+from flask_jwt_extended import create_access_token
+from App.models import User
 
 from App.controllers import (
-    login
+    create_user,
+    get_user_from_username,
 )
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
 
-
-
-
-'''
-Page/Action Routes
-'''    
-@auth_views.route('/users', methods=['GET'])
-def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users)
-
-@auth_views.route('/identify', methods=['GET'])
-@jwt_required()
-def identify_page():
-    return render_template('message.html', title="Identify", message=f"You are logged in as {current_user.id} - {current_user.username}")
+# Sign up to 'JOBIFY' with a username, password, usertype and a name/company_name
+@auth_views.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({'error': 'username already taken!'}), 400
     
+    create_user(data['username'], data['password'], data['user_type'], data['name'])
+    return jsonify({'message': 'account created'}), 201
 
+# log into account with username and password, generate a token for the session
 @auth_views.route('/login', methods=['POST'])
-def login_action():
-    data = request.form
-    token = login(data['username'], data['password'])
-    response = redirect(request.referrer)
-    if not token:
-        flash('Bad username or password given'), 401
-    else:
-        flash('Login Successful')
-        set_access_cookies(response, token) 
-    return response
+def login():
+    data = request.json
+    username = data.get('username')
+    user = get_user_from_username(username)
 
-@auth_views.route('/logout', methods=['GET'])
-def logout_action():
-    response = redirect(request.referrer) 
-    flash("Logged Out!")
-    unset_jwt_cookies(response)
-    return response
+    if user and user.check_password(data['password']):
+        access_token = create_access_token(identity=username)
+        return jsonify({'token':access_token, 'id':user.id}), 200
+    
+    return jsonify({'error':'invalid credentials!'}), 400
 
-'''
-API Routes
-'''
 
-@auth_views.route('/api/login', methods=['POST'])
-def user_login_api():
-  data = request.json
-  token = login(data['username'], data['password'])
-  if not token:
-    return jsonify(message='bad username or password given'), 401
-  response = jsonify(access_token=token) 
-  set_access_cookies(response, token)
-  return response
-
-@auth_views.route('/api/identify', methods=['GET'])
-@jwt_required()
-def identify_user():
-    return jsonify({'message': f"username: {current_user.username}, id : {current_user.id}"})
-
-@auth_views.route('/api/logout', methods=['GET'])
-def logout_api():
-    response = jsonify(message="Logged Out!")
-    unset_jwt_cookies(response)
-    return response

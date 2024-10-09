@@ -2,10 +2,23 @@ from App.models import User, Employer, Applicant, Application
 from App.database import db
 from sqlalchemy.exc import SQLAlchemyError
 
-
+# Get a specific user
 def get_user(id):
     return User.query.get(id)
 
+# Get a specific user from the username
+def get_user_from_username(username):
+    return User.query.filter_by(username=username).first()
+
+# Get a specific employer
+def get_employer(id):
+    return Employer.get(id)
+
+# Get a specific applicant
+def get_applicant(id):
+    return Applicant.get(id)
+
+# Get all users regardless of user type
 def get_all_users():
     return User.query.all()
 

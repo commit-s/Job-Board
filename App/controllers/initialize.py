@@ -21,8 +21,9 @@ def initialize():
         create_user(username, password, 'applicant', name)
 
     for employer_id, job_name, salary, description, listing_date in jobs:
-        job = create_job(employer_id, job_name, salary, description)
-        add_listing(job.id, employer_id, listing_date)
+        job, status = create_job(employer_id, job_name, salary, description)
+        if status == 0:
+            add_listing(job.id, employer_id, listing_date)
 
     # Sample job applications
     for applicant_id, listing_id, submission_date, status in applications:
