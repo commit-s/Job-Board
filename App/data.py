@@ -43,26 +43,26 @@ applicants = [
 
  # Sample jobs (20 jobs for testing)
 jobs = [
-    (1, "Software Engineer", 120000.0, "Develop and maintain software applications.", date(2024, 1, 1)),
-    (1, "Data Scientist", 110000.0, "Analyze data and build predictive models.", date(2024, 1, 2)),
-    (1, "Product Manager", 130000.0, "Lead product development initiatives.", date(2024, 1, 3)),
-    (2, "Web Developer", 95000.0, "Build and maintain web applications.", date(2024, 1, 4)),
-    (2, "UX Designer", 85000.0, "Design user experiences for web and mobile.", date(2024, 1, 5)),
-    (2, "Marketing Specialist", 80000.0, "Develop marketing strategies and campaigns.", date(2024, 1, 6)),
-    (3, "Sales Associate", 60000.0, "Assist customers and sell products.", date(2024, 1, 7)),
-    (3, "Business Analyst", 90000.0, "Analyze business processes and suggest improvements.", date(2024, 1, 8)),
-    (4, "Graphic Designer", 70000.0, "Create visual content for branding.", date(2024, 1, 9)),
-    (5, "Network Engineer", 100000.0, "Manage and support network systems.", date(2024, 1, 10)),
-    (6, "Customer Support Representative", 50000.0, "Provide support to customers.", date(2024, 1, 11)),
-    (7, "Project Coordinator", 75000.0, "Assist in project management activities.", date(2024, 1, 12)),
-    (8, "Quality Assurance Tester", 80000.0, "Ensure the quality of software products.", date(2024, 1, 13)),
-    (9, "Database Administrator", 95000.0, "Manage and maintain database systems.", date(2024, 1, 14)),
-    (10, "System Analyst", 90000.0, "Analyze system requirements and design solutions.", date(2024, 1, 15)),
-    (1, "DevOps Engineer", 115000.0, "Automate deployment processes.", date(2024, 1, 16)),
-    (2, "SEO Specialist", 70000.0, "Optimize websites for search engines.", date(2024, 1, 17)),
-    (3, "Content Writer", 60000.0, "Write engaging content for websites and blogs.", date(2024, 1, 18)),
-    (4, "Mobile App Developer", 100000.0, "Create applications for mobile devices.", date(2024, 1, 19)),
-    (5, "Technical Writer", 80000.0, "Write technical documentation for products.", date(2024, 1, 20))
+    (3, "Software Engineer", 120000.0, "Develop and maintain software applications.", date(2024, 1, 1)),
+    (3, "Data Scientist", 110000.0, "Analyze data and build predictive models.", date(2024, 1, 2)),
+    (3, "Product Manager", 130000.0, "Lead product development initiatives.", date(2024, 1, 3)),
+    (4, "Web Developer", 95000.0, "Build and maintain web applications.", date(2024, 1, 4)),
+    (4, "UX Designer", 85000.0, "Design user experiences for web and mobile.", date(2024, 1, 5)),
+    (4, "Marketing Specialist", 80000.0, "Develop marketing strategies and campaigns.", date(2024, 1, 6)),
+    (5, "Sales Associate", 60000.0, "Assist customers and sell products.", date(2024, 1, 7)),
+    (5, "Business Analyst", 90000.0, "Analyze business processes and suggest improvements.", date(2024, 1, 8)),
+    (6, "Graphic Designer", 70000.0, "Create visual content for branding.", date(2024, 1, 9)),
+    (7, "Network Engineer", 100000.0, "Manage and support network systems.", date(2024, 1, 10)),
+    (8, "Customer Support Representative", 50000.0, "Provide support to customers.", date(2024, 1, 11)),
+    (9, "Project Coordinator", 75000.0, "Assist in project management activities.", date(2024, 1, 12)),
+    (10, "Quality Assurance Tester", 80000.0, "Ensure the quality of software products.", date(2024, 1, 13)),
+    (11, "Database Administrator", 95000.0, "Manage and maintain database systems.", date(2024, 1, 14)),
+    (12, "System Analyst", 90000.0, "Analyze system requirements and design solutions.", date(2024, 1, 15)),
+    (3, "DevOps Engineer", 115000.0, "Automate deployment processes.", date(2024, 1, 16)),
+    (4, "SEO Specialist", 70000.0, "Optimize websites for search engines.", date(2024, 1, 17)),
+    (5, "Content Writer", 60000.0, "Write engaging content for websites and blogs.", date(2024, 1, 18)),
+    (6, "Mobile App Developer", 100000.0, "Create applications for mobile devices.", date(2024, 1, 19)),
+    (7, "Technical Writer", 80000.0, "Write technical documentation for products.", date(2024, 1, 20))
 ]
 
 

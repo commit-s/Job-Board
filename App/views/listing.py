@@ -47,14 +47,14 @@ def create_listing():
         return jsonify({'error':'Unauthorized action'}), 403
     
     # create the listing
-    listing, status = add_listing(job.id, employer.id, listing_date)
+    listing = add_listing(job.id, employer.id, listing_date)
     if not listing:
         return jsonify({'error': f'Failed to add job {job.id} to listing'}), 500
     
-    if status == 1:
-        return jsonify({'error':f'Listing for job {job.id} already exists', 'listingID': listing.id}), 400
+    if isinstance(listing, int):
+        return jsonify({'error':f'Listing for job {job.id} already exists', 'listingID': listing}), 400
     
-    return jsonify({'message': f'Listing for job {job_id} added successfully!'}), 201
+    return jsonify({'message': f'Listing for job {job_id} added successfully!', 'listingID': listing.id}), 201
 
 
 # Get listings

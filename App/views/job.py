@@ -26,11 +26,11 @@ def create_new_job():
     if not title:
         return jsonify({'error':'title not provided'}), 400
     
-    job, status = create_job(employer.id, title, data['salary'], data['description'])
+    job = create_job(employer.id, title, data['salary'], data['description'])
     if not job:
         return jsonify({'error': f'Failed to create job "{title}"'}), 500
     
-    if status == 1:
-        return jsonify({'error':f'job "{title}" already exists', 'jobID': job.id}), 400
+    if isinstance(job, int):
+        return jsonify({'error':f'job "{title}" already exists', 'jobID': job}), 400
     
-    return jsonify({'message': f'Job created successfully!', 'job':job.id}), 201
+    return jsonify({'message': f'Job created successfully!', 'jobID':job.id}), 201

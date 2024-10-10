@@ -17,22 +17,22 @@ def get_employer_listings(employer_id):
 # Add a job to listings
 def add_listing(job_id, employer_id, date):
     if not Job.query.get(job_id):
-        return None, 1
+        return None
     
     existing_listing = Listing.query.filter_by(job_id=job_id).first()
     if existing_listing:
         print(f"Listing already exists for job '{job_id}'")
-        return existing_listing, 1
+        return existing_listing.id
     
     try:
         listing = Listing(job_id, employer_id, date)
         db.session.add(listing)
         db.session.commit()
-        return listing, 0
+        return listing
     except SQLAlchemyError as e:
         db.session.rollback()
         print(f'Error occured during job listing: {e}')
-        return None, 1
+        return None
     
 # Remove a listing
 def remove_listing(listing_id):

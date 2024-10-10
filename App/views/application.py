@@ -27,12 +27,12 @@ def apply_to_listing(listing_id):
     if not listing:
         return jsonify({'error':f'listing id {listing_id} not found'}), 404
 
-    application, status = submit_application(applicant.id, listing_id) # empty listing date = date.today()
+    application = submit_application(applicant.id, listing_id) # empty listing date = date.today()
     if not applicant:
         return jsonify({'error': 'Application submission failed'}), 500
     
-    if status == 1:
-        return jsonify({'error': 'Application already submitted', 'applicationID': application.id}), 400
+    if isinstance(applicant, int):
+        return jsonify({'error': 'Application already submitted', 'applicationID': application}), 400
     
     return jsonify({'message': 'Application submitted', 'applicationID': application.id}), 201
 

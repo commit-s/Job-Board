@@ -13,6 +13,10 @@ def initialize():
     db.drop_all()
     db.create_all()
     
+    # Add applicant and employer that tests will be using
+    create_user('gamefreak','password1', 'employer', 'Game Freak')
+    create_user('jonathan_J','password1', 'applicant', 'Jonathan Joseph')
+
     # Populate Databse
     for username, password, name, user_type, company_name in companies:
         create_user(username, password, user_type, company_name)
@@ -21,9 +25,8 @@ def initialize():
         create_user(username, password, 'applicant', name)
 
     for employer_id, job_name, salary, description, listing_date in jobs:
-        job, status = create_job(employer_id, job_name, salary, description)
-        if status == 0:
-            add_listing(job.id, employer_id, listing_date)
+        job = create_job(employer_id, job_name, salary, description)
+        add_listing(job.id, employer_id, listing_date)
 
     # Sample job applications
     for applicant_id, listing_id, submission_date, status in applications:

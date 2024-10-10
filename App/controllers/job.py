@@ -17,22 +17,22 @@ def get_employer_jobs(employer_id):
 # Create a new job
 def create_job(employer_id, title, salary, description):
     if not Employer.query.get(employer_id):
-        return None, 1
+        return None
     
     existing_job = Job.query.filter_by(employer_id=employer_id, title=title, description=description).first()
     if existing_job:
         print('Similar Job already exists')
-        return existing_job, 1
+        return existing_job.id
     
     try:
         new_job = Job(employer_id, title, salary, description)
         db.session.add(new_job)
         db.session.commit()
-        return new_job, 0
+        return new_job
     except SQLAlchemyError as e:
         db.session.rollback()
         print(f'Error occured during job creation: {e}')
-        return None, 1
+        return None
 
 # Update a job's details
 def update_job(job_id, title=None, salary=None, description=None):

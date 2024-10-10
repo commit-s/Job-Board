@@ -1,4 +1,5 @@
 from App.models import User, Employer, Applicant, Application
+from flask_jwt_extended import create_access_token
 from App.database import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -77,3 +78,10 @@ def delete_user(id):
     return user
 
 
+# Authenticate a user
+def authenticate(username, password):
+    user = get_user_from_username(username)
+    if user and user.check_password(password):
+        access_token = create_access_token(identity=username)
+        return access_token
+    return None
